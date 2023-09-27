@@ -2,6 +2,7 @@ package arraylistassignment;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class ArrayListAssignment {
 
@@ -110,9 +111,60 @@ public class ArrayListAssignment {
 	}
 	
 	//Task 12
-	public void getSublist(ArrayList<Integer> list) {
-		list.removeRange(2,7);
+	public List<Integer> getSublist(int ini,int end) {
+		//list.removeRange(2,7); // my remove range is not working. usar sublist
+		return numberList.subList(ini,end);
 	}
+	
+	//Task 13
+	public boolean isEmptyArrayList(ArrayList<Integer> list) {
+		return list.isEmpty();
+	}
+	
+	//Task 14
+	public void replaceElements(int oldnumber, int newnumber) {
+		//list.set(8,200); // nao pode ser este porque ele precisa do indice
+		Collections.replaceAll(numberList,oldnumber,newnumber);
+	}
+	
+	//Task 15
+	public int countOccurences(ArrayList<Integer> list) {
+		int occ = 0;
+		for (Integer i : list) {
+            if(list.get(i) == 11) {
+            	occ++;
+            }   
+		}
+		return occ;
+		
+		//Collections.frequency(numberList,elem);
+	}
+	
+	//Task 16
+	public void clearArrayList(ArrayList<Integer> list) {
+		list.removeAll(list);
+	}
+	
+	//Task 17
+	public static int getArrayListSize(ArrayList<Integer> list) {
+		return list.size();
+	}
+	
+	//Task 18
+	public ArrayList<Integer> copyArrayList() {
+		ArrayList<Integer> list = new ArrayList<Integer>(numberList);
+		return list;
+	}
+	
+	//Task 19
+	public double findAverage(ArrayList<Integer> list) {
+		double avg = 0;
+		for(Integer num : list) {
+			avg = avg + num;
+		}
+		return (avg / list.size());		
+	}
+	
 	
 	//Task 9
 	public static void main(String[] args) {
@@ -144,7 +196,21 @@ public class ArrayListAssignment {
 		example.removeDuplicates(example.numberList);
 		example.displayArrayList(example.numberList);
 
-		example.getSublist(example.numberList);
+		System.out.println(example.getSublist(2,6));
+		
+		boolean result = example.isEmptyArrayList(example.numberList);
+		System.out.println(result);
+		
+		example.replaceElements(9,200);
+		example.displayArrayList(example.numberList);
+		
+		//example.clearArrayList(example.numberList);
+		//example.displayArrayList(example.numberList);
+		
+		System.out.println(getArrayListSize(example.numberList));
+		
+		double avg = example.findAverage(example.numberList);
+		System.out.println(avg);
 		
 	}
 
